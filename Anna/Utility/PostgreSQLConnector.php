@@ -28,13 +28,14 @@ class PostgreSQLConnector
 
     public function create(array $data)
     {
-        $keys = '';
-        $values = '';
+        $keys = [];
+        $values = [];
         foreach ($data as $key => $value) {
-            $keys .= $key . ',';
-            $values .= $value . ',';
+            array_merge($keys, $key);
+            array_merge($values, $value);
         }
-        $crateString = "insert into " . $this->tableName . ' (' . $keys . ') values (' . $values . ');';
+        $crateString = "insert into " . $this->tableName . ' (' . implode(",", $keys) . ') ' .
+            'values (' . implode(",", $values) . ');';
 
         $result = pg_query($this->connection, $crateString);
         return $result;
