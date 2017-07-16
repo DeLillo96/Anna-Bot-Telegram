@@ -30,12 +30,14 @@ switch ($text)
         if(!empty($result)) {
             $text = 'Ciao ' . $firstName;
         } else {
-            $userRepository->create([
-                'username' => $username,
-                'first_name' => $firstName,
-                'last_name' => $lastName
-            ]);
-            $text = 'Benvenuto ' . $firstName;
+            $data = [
+                'username' => $username
+            ];
+            if($firstName !== null) array_merge($data, ['first_name' => $firstName]);
+            if($lastName !== null ) array_merge($data, ['last_name' => $lastName]);
+
+            $userRepository->create($data);
+            $text = 'Benvenuto ' . $username;
         }
     break;
     case '/help':
