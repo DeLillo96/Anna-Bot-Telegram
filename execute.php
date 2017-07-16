@@ -22,7 +22,7 @@ $text = strtolower($text);
 switch ($text)
 {
     case '/start' :
-        require_once __DIR__ . '/Anna/Repository/UserRepository.php';
+        require_once __DIR__ . '/vendor/autoload.php';
         $userRepository = new \Anna\Repository\UserRepository();
         $result = $userRepository->read([
             'username' => $username
