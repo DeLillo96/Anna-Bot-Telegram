@@ -25,10 +25,10 @@ switch ($text)
         $text = 'Ciao ' . $firstName;
     break;
     case '/help':
-        $text = 'i comandi sono:<br>' .
-            '-/start:   ti saluto<br>' .
-            '-ricordami <evento>:   la mamma si ricorderà l\'evento<br>' .
-            '-dimentica <evento>:   la mamma si dimentica di ogni evento contenente la parola che specifichi<br>' .
+        $text = 'i comandi sono: \n' .
+            '-/start:   ti saluto \n' .
+            '-ricordami <evento>:   la mamma si ricorderà l\'evento \n' .
+            '-dimentica <evento>:   la mamma si dimentica di ogni evento contenente la parola che specifichi \n' .
             '-/racconta:    la mamma ti racconterà gli eventi che hai detto di ricordarsi';
     break;
     case '/racconta' :
