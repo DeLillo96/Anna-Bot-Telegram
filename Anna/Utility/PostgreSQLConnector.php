@@ -32,7 +32,7 @@ class PostgreSQLConnector
         $values = [];
         foreach ($data as $key => $value) {
             array_push($keys, $key);
-            array_push($values, $value);
+            array_push($values, '"' . $value . '"');
         }
         $crateString = "insert into " . $this->tableName . ' (' . implode(",", $keys) . ') ' .
             'values (' . implode(",", $values) . ');';
