@@ -47,7 +47,7 @@ class PostgreSQLConnector
         $query = 'SELECT * FROM (' . $this->sql . ') as t WHERE ';
         $where = '';
         foreach ($params as $key => $param){
-            $query .= $where . ' ' . $key . ' = ' . $param;
+            $query .= $where . ' ' . $key . ' = "' . $param . '"';
             $where = ' AND ';
         }
         return $query;
