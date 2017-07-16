@@ -25,13 +25,11 @@ switch ($text)
         $text = 'Ciao ' . $firstName;
     break;
     case '/help':
-        $text = [
-            'i comandi sono:',
-            '-/start:   ti saluto',
-            '-ricordami <evento>:   la mamma si ricorderà l\'evento',
-            '-dimentica <evento>:   la mamma si dimentica di ogni evento contenente la parola che specifichi',
-            '-/racconta:    la mamma ti racconterà gli eventi che hai detto di ricordarsi'
-        ];
+        $text = 'i comandi sono: <br />' .
+            '-/start:   ti saluto <br />' .
+            '-ricordami <evento>:   Mi ricorderò dell\'evento <br />' .
+            '-dimentica <evento>:   Mi dimenticherò ogni evento contenente la parola che specifichi <br />' .
+            '-/racconta:    Ti racconterò gli eventi che hai detto di ricordarmi';
     break;
     case '/racconta' :
         $text = 'Non sono ancora capace scusa';
@@ -41,5 +39,4 @@ switch ($text)
 header("Content-Type: application/json");
 $parameters = array('chat_id' => $chatId, "text" => $text);
 $parameters["method"] = "sendMessage";
-echo json_encode($parameters);
 echo json_encode($parameters);
