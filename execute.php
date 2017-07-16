@@ -34,6 +34,9 @@ switch ($text)
     case '/racconta' :
         $text = 'Non sono ancora capace scusa';
     break;
+    default:
+        $text = 'Scusa non ho capito...';
+    break;
 }
 
 header("Content-Type: application/json");
