@@ -22,7 +22,21 @@ $text = strtolower($text);
 switch ($text)
 {
     case '/start' :
-        $text = 'Ciao ' . $firstName;
+        require_once __DIR__ . '/Anna/Repository/UserRepository.php';
+        $userRepository = new \Anna\Repository\UserRepository();
+        $result = $userRepository->read([
+            'username' => $username
+        ]);
+        if(!empty($result)) {
+            $text = 'Ciao ' . $firstName;
+        } else {
+            $userRepository->create([
+                'username' => $username,
+                'first_name' => $firstName,
+                'last_name' => $lastName
+            ]);
+            $text = 'Benvenuto ' . $firstName;
+        }
     break;
     case '/help':
         $text = 'i comandi sono: <br />' .
@@ -36,7 +50,6 @@ switch ($text)
     break;
     default:
         $text = 'Scusa non ho capito...';
-    break;
 }
 
 header("Content-Type: application/json");
