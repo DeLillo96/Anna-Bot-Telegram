@@ -10,15 +10,13 @@ if($userId == null || $chatId == null) {
     exit;
 }
 
-echo 'primaciclo';
 while (true){
-    echo (date("H"));
     if(
+        date("H") == "7" ||
+        date("H") == "11" ||
         date("H") == "16" ||
         date("H") == "17"
     ) {
-        echo 'ciclo con '. $userId . ' ' . $chatId;
-
         $memoryRepository = new \Anna\Repository\MemoriesRepository();
         $result = $memoryRepository->read([
             'user_id' => $userId,
