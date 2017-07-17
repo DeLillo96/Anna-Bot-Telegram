@@ -98,13 +98,16 @@ switch ($text)
             $memory = substr($text, 10, strlen($text));
 
             $memoryRepository = new \Anna\Repository\MemoriesRepository();
-            $memoryRepository->delete([
+            $result = $memoryRepository->delete([
                 'username' => $username,
                 'chat_id' => $chatId,
                 'text' => $memory
             ]);
 
-            $text = 'Ricorderò per te!';
+            if ($result)
+                $text = 'Dimenticato!';
+            else
+                $text = 'Non riesco, c\'è un errore';
         } else
             $text = "Scusa non ho capito...\n/help per visualizzare cosa posso fare :)" ;
 }

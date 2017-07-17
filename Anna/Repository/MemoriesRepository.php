@@ -38,6 +38,7 @@ class MemoriesRepository extends PostgreSQLConnector
             'username' => $params['username'],
             'chat_id' => $params['chat_id']
         ]);
+
         return parent::delete([
             'text' => '%' . $params['text'] . '%',
             'user_id' => array_shift($userResult)['id'],
