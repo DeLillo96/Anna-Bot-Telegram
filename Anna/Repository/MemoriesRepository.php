@@ -30,9 +30,7 @@ class MemoriesRepository extends PostgreSQLConnector
             'chat_id' => $data['chat_id']
         ]);
 
-        var_dump( $memoryResult );
-        echo $memoryResult;
-        error_log($memoryResult,1);
+        error_log(implode("|",$memoryResult));
         die;
         $crateString = "insert into user_memory (user_id, memory_id) values (" .
             array_shift($userResult)['id'] . ", " . array_shift($memoryResult)['id'] . ");";
