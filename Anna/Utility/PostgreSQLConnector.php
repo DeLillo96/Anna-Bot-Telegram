@@ -56,7 +56,7 @@ class PostgreSQLConnector
             if(is_string($param)){
                 $query .= $where . " " . $key . " like '" . $param . "'";
             } else {
-                $query .= $where . " " . $key . " = '" . $param . "'";
+                $query .= $where . " " . $key . " = " . $param;
             }
             $where = ' AND ';
         }
