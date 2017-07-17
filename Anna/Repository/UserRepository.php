@@ -10,6 +10,7 @@ class UserRepository extends PostgreSQLConnector
     protected $sql =
         'select
             Id,
+            chat_id,
             first_name,
             last_name,
             username

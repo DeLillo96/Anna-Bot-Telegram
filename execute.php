@@ -25,19 +25,22 @@ switch ($text)
         require_once __DIR__ . '/vendor/autoload.php';
         $userRepository = new \Anna\Repository\UserRepository();
         $result = $userRepository->read([
-            'username' => $username
+            'username' => $username,
+            'chat_id' => $chatId
         ]);
+
         if(!empty($result)) {
             $text = 'Ciao ' . $firstName;
         } else {
             $data = [
-                'username' => $username
+                'username' => $username,
+                'chat_id' => $chatId
             ];
             if($firstName !== null) array_merge($data, ['first_name' => $firstName]);
             if($lastName !== null ) array_merge($data, ['last_name' => $lastName]);
 
             $userRepository->create($data);
-            $text = 'Benvenuto ' . $username;
+            $text = 'Benvenuto ' . $username . '! Mi raccomando, se cambi username non ti riconoscerò più!';
         }
     break;
     case '/help':
