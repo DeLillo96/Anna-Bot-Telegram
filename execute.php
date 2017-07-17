@@ -66,23 +66,22 @@ switch ($text)
         $text = $message;
     break;
     default:
-        $text = 'Scusa non ho capito...';
-}
+        if ('ricordami' == substr($text, 0, 8)) {
+            $memory = substr($text, 9, strlen($text));
 
-if ('ricordami' == substr($text, 0, 8)) {
-    $memory = substr($text, 9, strlen($text));
+            $memoryRepository = new \Anna\Repository\MemoriesRepository();
+            $result = $memoryRepository->create([
+                'username' => $username,
+                'chat_id' => $chatId,
+                'text' => $memory
+            ]);
 
-    $memoryRepository = new \Anna\Repository\MemoriesRepository();
-    $result = $memoryRepository->create([
-        'username' => $username,
-        'chat_id' => $chatId,
-        'text' => $memory
-    ]);
-
-    if(!empty($result))
-        $text = 'Ricorderò per te';
-    else
-        $text = 'C\'è stato un errore';
+            if(!empty($result))
+                $text = 'Ricorderò per te';
+            else
+                $text = 'C\'è stato un errore';
+        } else
+            $text = 'Scusa non ho capito...';
 }
 
 header("Content-Type: application/json");
