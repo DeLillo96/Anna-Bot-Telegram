@@ -23,9 +23,17 @@ while (true){
             'chat_id' => $chatId
         ]);
 
-        $text = "Mi hai detto di ricordarti di:\n";
-        foreach ($result as $memory) {
-            $text .= "-\t" . $memory['text'] . "\n";
+        if(!empty($result)) {
+            $text = "Mi hai detto di ricordarti di:\n";
+            foreach ($result as $memory) {
+                $text .= "-\t" . $memory['text'] . "\n";
+            }
+        } else {
+            $userRepository = new \Anna\Repository\UserRepository();
+            $result = $userRepository->read([
+                'id' => $userId
+            ]);
+            if(empty($result)) exit;
         }
 
         $BOT_TOKEN = '435772795:AAESeQKeW53yZkJT7AEVHU348by8o0tBTq8';
@@ -42,6 +50,6 @@ while (true){
         curl_setopt($handle, CURLOPT_TIMEOUT, 60);
         $result = curl_exec($handle);
 
-        sleep(30);
+        sleep(60);
     }
 }
