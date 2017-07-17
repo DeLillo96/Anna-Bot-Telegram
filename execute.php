@@ -104,17 +104,21 @@ switch ($text)
         } elseif ('dimentica' == substr($text, 0, 9)) {
             $memory = substr($text, 10, strlen($text));
 
-            $memoryRepository = new \Anna\Repository\MemoriesRepository();
-            $result = $memoryRepository->delete([
-                'username' => $username,
-                'chat_id' => $chatId,
-                'text' => $memory
-            ]);
+            if($memory != "" || $memory != " "){
+                $memoryRepository = new \Anna\Repository\MemoriesRepository();
+                $result = $memoryRepository->delete([
+                    'username' => $username,
+                    'chat_id' => $chatId,
+                    'text' => $memory
+                ]);
+                if ($result)
+                    $text = 'Dimenticato!';
+                else
+                    $text = 'Non riesco, c\'è un errore';
+            } else {
+                $text = 'Scusa, devi darmi almeno un carattere da confrontare';
+            }
 
-            if ($result)
-                $text = 'Dimenticato!';
-            else
-                $text = 'Non riesco, c\'è un errore';
         } else
             $text = "Scusa non ho capito...\n/help per visualizzare cosa posso fare :)" ;
 }
