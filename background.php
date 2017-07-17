@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . 'vendor/autoload.php';
+require_once __DIR__ . '/vendor/autoload.php';
 
 $userId = intval($argv[1]);
 $chatId = intval($argv[2]);
