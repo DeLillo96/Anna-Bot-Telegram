@@ -4,7 +4,10 @@ $update = json_decode($content, true);
 
 if(!$update)
 {
-  exit;
+    header("Content-Type: application/json");
+    $parameters = array('chat_id' => 84355174, "text" => 'ciao!');
+    $parameters["method"] = "sendMessage";
+    echo json_encode($parameters);
 }
 require_once __DIR__ . '/vendor/autoload.php';
 
