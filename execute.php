@@ -36,8 +36,8 @@ switch ($text)
                 'username' => $username,
                 'chat_id' => $chatId
             ];
-            if($firstName !== null) array_merge($data, ['first_name' => $firstName]);
-            if($lastName !== null ) array_merge($data, ['last_name' => $lastName]);
+            if($firstName != "") array_merge($data, ['first_name' => $firstName]);
+            if($lastName != "") array_merge($data, ['last_name' => $lastName]);
 
             $userRepository->create($data);
             $text = 'Benvenuto ' . $username . '! Mi raccomando, se cambi username non ti riconoscerò più!';
@@ -56,8 +56,7 @@ switch ($text)
             'username' => $username,
             'chat_id' => $chatId
         ]);
-
-
+        var_dump($result);
         $text = $result;
     break;
     case '/test':
