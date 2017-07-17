@@ -104,7 +104,7 @@ switch ($text)
         } elseif ('dimentica' == substr($text, 0, 9)) {
             $memory = substr($text, 10, strlen($text));
 
-            if($memory != "" || $memory != " "){
+            if(!(!empty($memory) || $memory === ' ')){
                 $memoryRepository = new \Anna\Repository\MemoriesRepository();
                 $result = $memoryRepository->delete([
                     'username' => $username,
