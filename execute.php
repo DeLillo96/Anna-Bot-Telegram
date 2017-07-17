@@ -40,15 +40,15 @@ switch ($text)
             if($lastName != "") array_merge($data, ['last_name' => $lastName]);
 
             $userRepository->create($data);
-            $text = 'Benvenuto ' . $username . '!\n Mi raccomando, se cambi username non ti riconoscerò più!';
+            $text = 'Benvenuto ' . $username . "!\n Mi raccomando, se cambi username non ti riconoscerò più!";
         }
     break;
     case '/help':
-        $text = 'i comandi sono: \n' .
-            '-/start:\tper inizializzare il servizio \n' .
-            '-ricordami <evento>:\tMi ricorderò dell\'evento \n' .
-            '-dimentica <evento>:\tMi dimenticherò ogni evento contenente la parola che specifichi \n' .
-            '-/racconta:\tTi racconterò gli eventi che hai detto di ricordarmi';
+        $text = "i comandi sono: \n" .
+            "-/start:\tper inizializzare il servizio \n" .
+            "-ricordami <evento>:\tMi ricorderò dell'evento \n" .
+            "-dimentica <evento>:\tMi dimenticherò ogni evento contenente la parola che specifichi \n" .
+            "-/racconta:\tTi racconterò gli eventi che hai detto di ricordarmi";
     break;
     case '/racconta' :
         $memoryRepository = new \Anna\Repository\MemoriesRepository();
@@ -57,9 +57,9 @@ switch ($text)
             'chat_id' => $chatId
         ]);
 
-        $text = 'Mi hai detto di ricordarti di:\n';
+        $text = "Mi hai detto di ricordarti di:\n";
         foreach ($result as $memory) {
-            $text .= '-\t' . $memory['text'] . '\n';
+            $text .= "-\t" . $memory['text'] . "\n";
         }
     break;
     case '/test':
@@ -78,10 +78,10 @@ switch ($text)
 
             $text = 'Ricorderò per te!';
         } else
-            $text = 'Scusa non ho capito...\n\\help per visualizzare cosa posso fare :)' ;
+            $text = "Scusa non ho capito...\n\\help per visualizzare cosa posso fare :)" ;
 }
 
 header("Content-Type: application/json");
-$parameters = array('chat_id' => $chatId, "text" => urlencode($text));
+$parameters = array('chat_id' => $chatId, "text" => $text);
 $parameters["method"] = "sendMessage";
 echo json_encode($parameters);
