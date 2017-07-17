@@ -42,7 +42,7 @@ class MemoriesRepository extends PostgreSQLConnector
 
         $memories = $this->read([
             'text' => '%' . $params['text'] . '%',
-            'user_id' => array_shift($userResult)['id']
+            'user_id' => intval(array_shift($userResult)['id'])
         ]);
 
         foreach ($memories as $memory) {
