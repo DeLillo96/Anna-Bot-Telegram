@@ -56,7 +56,7 @@ switch ($text)
             "-/addio:\tPer disiscriversi al servizio \n" .
             "-ricordami <evento>:\tMi ricorderò dell'evento \n" .
             "-dimentica <evento>:\tMi dimenticherò ogni evento contenente la parola che specifichi \n" .
-            "-/racconta:\tTi racconterò gli eventi che hai detto di ricordarmi" .
+            "-/racconta:\tTi racconterò gli eventi che hai detto di ricordarmi \n" .
             "-/contatti:\tSe vuoi contattare mio padre";
     break;
     case '/racconta' :
