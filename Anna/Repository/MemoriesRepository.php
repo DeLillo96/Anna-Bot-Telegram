@@ -9,6 +9,7 @@ class MemoriesRepository extends PostgreSQLConnector
     protected $tableName = 'memory';
     protected $sql =
         'select
+            memory.id as memory_id,
             text,
             username,
             chat_id
@@ -35,7 +36,7 @@ class MemoriesRepository extends PostgreSQLConnector
         ]);
         error_log(var_dump($memoryResult));
         $crateString = "insert into user_memory (user_id, memory_id) values (" .
-            array_shift($userResult)['id'] . ", " . array_shift($memoryResult)['id'] . ");";
+            array_shift($userResult)['id'] . ", " . array_shift($memoryResult)['memory_id'] . ");";
 
         return pg_query($this->connection, $crateString);
     }
