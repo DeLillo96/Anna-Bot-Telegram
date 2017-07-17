@@ -6,6 +6,7 @@ if(!$update)
 {
   exit;
 }
+require_once __DIR__ . '/vendor/autoload.php';
 
 $message = isset($update['message']) ? $update['message'] : "";
 $messageId = isset($message['message_id']) ? $message['message_id'] : "";
@@ -22,7 +23,6 @@ $text = strtolower($text);
 switch ($text)
 {
     case '/start' :
-        require_once __DIR__ . '/vendor/autoload.php';
         $userRepository = new \Anna\Repository\UserRepository();
         $result = $userRepository->read([
             'username' => $username,
@@ -45,16 +45,30 @@ switch ($text)
     break;
     case '/help':
         $text = 'i comandi sono: <br />' .
-            '-/start:   ti saluto <br />' .
+            '-/start:   per inizializzare il servizio <br />' .
             '-ricordami <evento>:   Mi ricorderò dell\'evento <br />' .
             '-dimentica <evento>:   Mi dimenticherò ogni evento contenente la parola che specifichi <br />' .
             '-/racconta:    Ti racconterò gli eventi che hai detto di ricordarmi';
     break;
     case '/racconta' :
-        $text = 'Non sono ancora capace scusa';
+        $memoryRepository = new \Anna\Repository\MemoriesRepository();
+        $result = $memoryRepository->read([
+            'username' => $username,
+            'chat_id' => $chatId
+        ]);
+
+
+        $text = $result;
+    break;
+    case '/test':
+        $text = $message;
     break;
     default:
         $text = 'Scusa non ho capito...';
+}
+
+if ('ricordati' == substr($text, 0, 9)) {
+
 }
 
 header("Content-Type: application/json");
