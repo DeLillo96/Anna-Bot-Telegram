@@ -10,6 +10,7 @@ class MemoriesRepository extends PostgreSQLConnector
     protected $sql =
         'select
             memory.id as memory_id,
+            user_id,
             text,
             username,
             chat_id
@@ -41,7 +42,7 @@ class MemoriesRepository extends PostgreSQLConnector
 
         return parent::delete([
             'text' => '%' . $params['text'] . '%',
-            'user_id' => array_shift($userResult)['id'],
+            'user_id' => intval(array_shift($userResult)['id']),
         ]);
     }
 }
