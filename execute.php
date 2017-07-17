@@ -69,7 +69,7 @@ switch ($text)
         $text = 'Scusa non ho capito...';
 }
 
-if ('ricordati' == substr($text, 0, 9)) {
+if ('ricordami' == substr($text, 0, 8)) {
     $memory = substr($text, 9, strlen($text));
 
     $memoryRepository = new \Anna\Repository\MemoriesRepository();
