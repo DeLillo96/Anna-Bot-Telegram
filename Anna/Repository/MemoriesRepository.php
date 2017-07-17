@@ -40,11 +40,16 @@ class MemoriesRepository extends PostgreSQLConnector
             'chat_id' => $params['chat_id']
         ]);
 
-        $memoryResult = $this->read([
+        $memories = $this->read([
             'text' => '%' . $params['text'] . '%',
             'user_id' => array_shift($userResult)['id']
         ]);
 
-        return parent::delete(['id' => $memoryResult['memory_id']]);
+        foreach ($memories as $memory) {
+            if(!parent::delete(['memory_id' => $memory['memory_id']])) {
+                return false;
+            }
+        }
+        return true;
     }
 }
