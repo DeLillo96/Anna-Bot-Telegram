@@ -14,7 +14,8 @@ echo 'primaciclo';
 while (true){
     echo (date("H"));
     if(
-        date("H") == "18"
+        date("H") == "16" ||
+        date("H") == "17"
     ) {
         echo 'ciclo con '. $userId . ' ' . $chatId;
 
