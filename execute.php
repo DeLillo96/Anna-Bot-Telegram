@@ -66,9 +66,7 @@ switch ($text)
         $text = 'Scusa non ho capito...';
 }
 
-if ('ricordati' == substr($text, 0, 9)) {
-
-}
+//if ('ricordati' == substr($text, 0, 9)) {}
 
 header("Content-Type: application/json");
 $parameters = array('chat_id' => $chatId, "text" => $text);
