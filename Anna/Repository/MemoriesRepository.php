@@ -34,7 +34,7 @@ class MemoriesRepository extends PostgreSQLConnector
         $memoryResult = $this->read([
             'text' => $data['text']
         ]);
-        error_log(var_dump($memoryResult));
+
         $crateString = "insert into user_memory (user_id, memory_id) values (" .
             array_shift($userResult)['id'] . ", " . array_shift($memoryResult)['memory_id'] . ");";
 

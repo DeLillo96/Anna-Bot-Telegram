@@ -70,16 +70,13 @@ switch ($text)
             $memory = substr($text, 10, strlen($text));
 
             $memoryRepository = new \Anna\Repository\MemoriesRepository();
-            $result = $memoryRepository->create([
+            $memoryRepository->create([
                 'username' => $username,
                 'chat_id' => $chatId,
                 'text' => $memory
             ]);
 
-            if(!empty($result))
-                $text = 'Ricorderò per te';
-            else
-                $text = 'C\'è stato un errore: ' . $result;
+            $text = 'Ricorderò per te';
         } else
             $text = 'Scusa non ho capito...';
 }
