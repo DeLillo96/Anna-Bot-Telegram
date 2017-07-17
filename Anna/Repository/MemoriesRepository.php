@@ -46,7 +46,7 @@ class MemoriesRepository extends PostgreSQLConnector
         ]);
 
         foreach ($memories as $memory) {
-            if(!parent::delete(['memory_id' => $memory['memory_id']])) {
+            if(!parent::delete(['id' => $memory['memory_id']])) {
                 return false;
             }
         }
