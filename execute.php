@@ -66,7 +66,7 @@ switch ($text)
         $userRepository = new \Anna\Repository\UserRepository();
         $result = $userRepository->delete([
             'username' => $username,
-            'chat_id' => $chatId
+            'chat_id' => '' . $chatId
         ]);
 
         if ($result)
