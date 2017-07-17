@@ -62,7 +62,19 @@ switch ($text)
             $text .= "-\t" . $memory['text'] . "\n";
         }
     break;
-    case '/contacts':
+    case '/addio' :
+        $userRepository = new \Anna\Repository\UserRepository();
+        $result = $userRepository->delete([
+            'username' => $username,
+            'chat_id' => $chatId
+        ]);
+
+        if ($result)
+            $text = "Disiscrizione effettuata...\nTorna a utilizzare il servizio ogni volta che vorrai";
+        else
+            $text = "Disiscrizione fallita...\nPer contattare mio padre digita il comando /contatti";
+    break;
+    case '/contatti':
         $text = "Qui potrai trovare i contatti di mio padre:\n" .
             "\ttelegram: @delillo96\n" .
             "\te-mail: di.lillo.fernando@gmail.com\n" .
