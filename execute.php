@@ -56,7 +56,7 @@ switch ($text)
             'username' => $username,
             'chat_id' => $chatId
         ]);
-        var_dump($result);
+
         $text = $result;
     break;
     case '/test':
