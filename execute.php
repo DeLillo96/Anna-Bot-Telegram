@@ -45,7 +45,7 @@ switch ($text)
     break;
     case '/help':
         $text = "i comandi sono: \n" .
-            "-/start:\tper inizializzare il servizio \n" .
+            "-/start:\tPer inizializzare il servizio \n" .
             "-ricordami <evento>:\tMi ricorderò dell'evento \n" .
             "-dimentica <evento>:\tMi dimenticherò ogni evento contenente la parola che specifichi \n" .
             "-/racconta:\tTi racconterò gli eventi che hai detto di ricordarmi";
@@ -78,7 +78,7 @@ switch ($text)
 
             $text = 'Ricorderò per te!';
         } else
-            $text = "Scusa non ho capito...\n\\help per visualizzare cosa posso fare :)" ;
+            $text = "Scusa non ho capito...\n/help per visualizzare cosa posso fare :)" ;
 }
 
 header("Content-Type: application/json");
