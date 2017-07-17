@@ -62,8 +62,13 @@ switch ($text)
             $text .= "-\t" . $memory['text'] . "\n";
         }
     break;
-    case '/test':
-        $text = $message;
+    case '/contacts':
+        $text = "Qui potrai trovare i contatti di mio padre:\n" .
+            "\ttelegram: @delillo96\n" .
+            "\te-mail: di.lillo.fernando@gmail.com\n" .
+            "\tNome: Fernando\n" .
+            "\tCognome: Di Lillo\n" .
+            "\tIndirizzo: Naah questo non posso dartelo ahah";
     break;
     default:
         if ('ricordami' == substr($text, 0, 9)) {
