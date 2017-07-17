@@ -69,7 +69,21 @@ switch ($text)
         $text = 'Scusa non ho capito...';
 }
 
-//if ('ricordati' == substr($text, 0, 9)) {}
+if ('ricordati' == substr($text, 0, 9)) {
+    $memory = substr($text, 9, strlen($text));
+
+    $memoryRepository = new \Anna\Repository\MemoriesRepository();
+    $result = $memoryRepository->create([
+        'username' => $username,
+        'chat_id' => $chatId,
+        'text' => $memory
+    ]);
+
+    if(!empty($result))
+        $text = 'Ricorderò per te';
+    else
+        $text = 'C\'è stato un errore';
+}
 
 header("Content-Type: application/json");
 $parameters = array('chat_id' => $chatId, "text" => $text);
