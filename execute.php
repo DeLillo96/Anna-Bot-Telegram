@@ -82,6 +82,17 @@ switch ($text)
             ]);
 
             $text = 'Ricorderò per te!';
+        } elseif ('dimentica' == substr($text, 0, 9)) {
+            $memory = substr($text, 10, strlen($text));
+
+            $memoryRepository = new \Anna\Repository\MemoriesRepository();
+            $memoryRepository->delete([
+                'username' => $username,
+                'chat_id' => $chatId,
+                'text' => $memory
+            ]);
+
+            $text = 'Ricorderò per te!';
         } else
             $text = "Scusa non ho capito...\n/help per visualizzare cosa posso fare :)" ;
 }

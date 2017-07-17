@@ -14,30 +14,33 @@ class MemoriesRepository extends PostgreSQLConnector
             username,
             chat_id
         from
-            memory
-            left join user_memory on memory.id = user_memory.memory_id
-            left join users on user_memory.user_id = users.id
+            memory left join users on memory.user_id = users.id
         ';
 
     public function create(array $data)
     {
-        parent::create([
-            'text' => $data['text']
-        ]);
-
         $userRepository = new UserRepository();
         $userResult = $userRepository->read([
             'username' => $data['username'],
             'chat_id' => $data['chat_id']
         ]);
 
-        $memoryResult = $this->read([
-            'text' => $data['text']
+        return parent::create([
+            'text' => $data['text'],
+            'user_id' => array_shift($userResult)['id']
         ]);
+    }
 
-        $crateString = "insert into user_memory (user_id, memory_id) values (" .
-            array_shift($userResult)['id'] . ", " . array_shift($memoryResult)['memory_id'] . ");";
-
-        return pg_query($this->connection, $crateString);
+    public function delete($params)
+    {
+        $userRepository = new UserRepository();
+        $userResult = $userRepository->read([
+            'username' => $params['username'],
+            'chat_id' => $params['chat_id']
+        ]);
+        return parent::delete([
+            'text' => '%' . $params['text'] . '%',
+            'user_id' => array_shift($userResult)['id'],
+        ]);
     }
 }

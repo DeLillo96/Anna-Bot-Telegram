@@ -26,6 +26,11 @@ class PostgreSQLConnector
         return pg_fetch_all($result);
     }
 
+    public function delete($params)
+    {
+        return pg_delete($this->connection, $this->tableName, $params);
+    }
+
     public function create(array $data)
     {
         $keys = [];
