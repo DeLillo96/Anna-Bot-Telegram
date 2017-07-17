@@ -66,8 +66,8 @@ switch ($text)
         $text = $message;
     break;
     default:
-        if ('ricordami' == substr($text, 0, 8)) {
-            $memory = substr($text, 9, strlen($text));
+        if ('ricordami' == substr($text, 0, 9)) {
+            $memory = substr($text, 10, strlen($text));
 
             $memoryRepository = new \Anna\Repository\MemoriesRepository();
             $result = $memoryRepository->create([
