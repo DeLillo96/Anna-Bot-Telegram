@@ -37,7 +37,7 @@ class MemoriesRepository extends PostgreSQLConnector
         $userRepository = new UserRepository();
         $userResult = $userRepository->read([
             'username' => $params['username'],
-            'chat_id' => $params['chat_id']
+            'chat_id' => intval($params['chat_id'])
         ]);
 
         $memories = $this->read([
