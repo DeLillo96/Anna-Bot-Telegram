@@ -4,10 +4,7 @@ $update = json_decode($content, true);
 
 if(!$update)
 {
-    header("Content-Type: application/json");
-    $parameters = array('chat_id' => 84355174, "text" => 'ciao!');
-    $parameters["method"] = "sendMessage";
-    echo json_encode($parameters);
+  exit;
 }
 require_once __DIR__ . '/vendor/autoload.php';
 
@@ -44,6 +41,13 @@ switch ($text)
 
             $userRepository->create($data);
             $text = 'Benvenuto ' . $username . "!\n Mi raccomando, se cambi username non ti riconoscerò più!";
+
+            $result = $userRepository->read([
+                'username' => $username,
+                'chat_id' => $chatId
+            ]);
+            $command = "php -f background.php " . array_shift($result)['id'] . " " . $chatId;
+            exec($command . "> /dev/null &");
         }
     break;
     case '/help':

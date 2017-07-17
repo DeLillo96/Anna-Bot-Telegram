@@ -23,7 +23,6 @@ class PostgreSQLConnector
     public function read($params = [])
     {
         $result = pg_query($this->connection, $this->prepareQuery($params));
-        error_log($this->prepareQuery($params));
         return pg_fetch_all($result);
     }
 
