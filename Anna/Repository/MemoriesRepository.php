@@ -20,7 +20,7 @@ class MemoriesRepository extends PostgreSQLConnector
 
     public function create(array $data)
     {
-        $memoryResult = parent::create([
+        parent::create([
             'text' => $data['text']
         ]);
 
@@ -30,8 +30,10 @@ class MemoriesRepository extends PostgreSQLConnector
             'chat_id' => $data['chat_id']
         ]);
 
+        $memoryResult = $this->read([
+            'text' => $data['text']
+        ]);
         error_log(var_dump($memoryResult));
-        die;
         $crateString = "insert into user_memory (user_id, memory_id) values (" .
             array_shift($userResult)['id'] . ", " . array_shift($memoryResult)['id'] . ");";
 
