@@ -79,7 +79,7 @@ switch ($text)
             if(!empty($result))
                 $text = 'Ricorderò per te';
             else
-                $text = 'C\'è stato un errore';
+                $text = 'C\'è stato un errore: ' . $result;
         } else
             $text = 'Scusa non ho capito...';
 }
