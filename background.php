@@ -1,6 +1,14 @@
 <?php
+
+require_once __DIR__ . 'vendor/autoload.php';
+
 $userId = intval($argv[1]);
 $chatId = intval($argv[2]);
+
+if($userId == null || $chatId == null) {
+    error_log('missing parameters');
+    exit;
+}
 
 while (true){
     if(
@@ -9,7 +17,7 @@ while (true){
         date("H") == "12" ||
         date("H") == "18"
     ) {
-        require_once 'vendor/autoload.php';
+        error_log('ciclo con '. $userId . ' ' . $chatId);
 
         $memoryRepository = new \Anna\Repository\MemoriesRepository();
         $result = $memoryRepository->read([
