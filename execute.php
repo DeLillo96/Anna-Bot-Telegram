@@ -36,8 +36,8 @@ switch ($text)
                 'username' => $username,
                 'chat_id' => $chatId
             ];
-            if($firstName != "") array_merge($data, ['first_name' => $firstName]);
-            if($lastName != "") array_merge($data, ['last_name' => $lastName]);
+            if(!empty($firstName)) array_merge($data, ['first_name' => $firstName]);
+            if(!empty($lastName)) array_merge($data, ['last_name' => $lastName]);
 
             $userRepository->create($data);
             $text = 'Benvenuto ' . $username . "!\n Mi raccomando, se cambi username non ti riconoscerò più!";
@@ -104,7 +104,7 @@ switch ($text)
         } elseif ('dimentica' == substr($text, 0, 9)) {
             $memory = substr($text, 10, strlen($text));
 
-            if(!(!empty($memory) || $memory === ' ')){
+            if(!(empty($memory) || $memory === ' ')){
                 $memoryRepository = new \Anna\Repository\MemoriesRepository();
                 $result = $memoryRepository->delete([
                     'username' => $username,
