@@ -57,7 +57,10 @@ switch ($text)
             'chat_id' => $chatId
         ]);
 
-        $text = $result;
+        $text = 'Mi hai detto di ricordarti di: ';
+        foreach ($result as $memory) {
+            $text .= $memory['text'] . ' ';
+        }
     break;
     case '/test':
         $text = $message;
