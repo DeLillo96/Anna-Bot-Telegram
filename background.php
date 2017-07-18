@@ -50,6 +50,6 @@ while (true){
         curl_setopt($handle, CURLOPT_TIMEOUT, 60);
         $result = curl_exec($handle);
 
+        sleep(30*60);
     }
-    sleep(30*60);
 }
