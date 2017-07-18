@@ -13,6 +13,7 @@ if($userId == null || $chatId == null) {
 while (true){
     if(
         date("H") == "7" ||
+        date("H") == "6" ||
         date("H") == "10" ||
         date("H") == "16"
     ) {
@@ -36,7 +37,7 @@ while (true){
             if(empty($result)) exit;
         }
 
-        $BOT_TOKEN = '435772795:AAESeQKeW53yZkJT7AEVHU348by8o0tBTq8';
+        $BOT_TOKEN = '368911276:AAHQqenFvjALb-WOMqzrbD9MmPd_dJmB4lE';
         $API_URL = 'https://api.telegram.org/bot' . $BOT_TOKEN .'/';
         $method = 'sendMessage';
         $parameters = [
@@ -50,6 +51,6 @@ while (true){
         curl_setopt($handle, CURLOPT_TIMEOUT, 60);
         $result = curl_exec($handle);
 
-        sleep(30*60);
+        sleep(60);
     }
 }
