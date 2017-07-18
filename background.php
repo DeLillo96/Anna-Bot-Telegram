@@ -12,7 +12,6 @@ if($userId == null || $chatId == null) {
 
 while (true){
     if(
-        date("H") == "8" ||
         date("H") == "6" ||
         date("H") == "10" ||
         date("H") == "16"
@@ -51,6 +50,6 @@ while (true){
         curl_setopt($handle, CURLOPT_TIMEOUT, 60);
         $result = curl_exec($handle);
 
-        sleep(60);
+        sleep(200);
     }
 }
