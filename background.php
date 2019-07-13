@@ -36,7 +36,7 @@ while (true){
             if(empty($result)) exit;
         }
 
-        $BOT_TOKEN = '368911276:AAHQqenFvjALb-WOMqzrbD9MmPd_dJmB4lE';
+        $BOT_TOKEN = '{{ BOT_TOKEN }}';
         $API_URL = 'https://api.telegram.org/bot' . $BOT_TOKEN .'/';
         $method = 'sendMessage';
         $parameters = [
