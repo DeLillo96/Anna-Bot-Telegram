@@ -4,12 +4,7 @@ namespace Anna\Utility;
 
 class PostgreSQLConnector
 {
-    protected $connectionString =
-        "host=ec2-54-247-166-129.eu-west-1.compute.amazonaws.com " .
-        "port=5432 " .
-        "dbname=d10i40raettkg9 " .
-        "user=afssaqqjoyrmfs " .
-        "password=f44c7a7ec233286d786f17289a1e6b8db077f704d5527450736186addb3260c4";
+    protected $connectionString = "CONNECTION_STRING";
     protected $connection;
     protected $sql = '';
     protected $tableName = '';
